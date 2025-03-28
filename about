@@ -1,0 +1,42 @@
+Example CPU usage data (Replace with real system data)
+cpu_usage = np.array([20, 22, 21, 19, 85, 23, 20, 22, 95]).reshape(-1, 1)
+
+Train the model
+model = IsolationForest(contamination=0.1)
+
+model.fit(cpu_usage)
+
+Detect anomalies
+predictions = model.predict(cpu_usage)
+
+anomalies = cpu_usage[predictions == -1]
+
+print("Anomalous CPU Usage:", anomalies)
+
+➡ Next: Integrate this model into the system monitoring tool.
+
+✅ Step 2: Build the API for Data Retrieval
+
+Goal: Create a backend API to fetch real-time system performance data.
+
+✔ Develop an API using Flask or FastAPI.
+
+✔ Set up endpoints for retrieving system health metrics.
+
+✔ Provide data for visualization and alerts.
+
+📌 Sample Code – Flask API for System Monitoring
+
+python
+
+Copy Edit
+
+from flask import Flask, jsonify
+
+import psutil
+
+app = Flask(name)
+
+@app.route('/api/system_status', methods=['GET'])
+
+def get_system_status():
